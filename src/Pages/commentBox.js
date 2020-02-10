@@ -1,13 +1,28 @@
-import React from "react";
-import { Button } from "reactstrap";
+import React, { useState } from "react";
+import { Button, Form } from "reactstrap";
 
 const CommentBox = ({ heading }) => {
+  //post comment
+  const [postComment, setPostComment] = useState([]);
+  const addNewComment = [...postComment];
+
+  const handleCommentSubmit = e => {
+    e.preventDefault();
+    console.log(postComment);
+    addNewComment.push([]);
+    setPostComment("");
+  };
+
+  const handleCommentInput = comment => {
+    setPostComment(comment.target.value);
+  };
+
   return (
-    <>
+    <Form onSubmit={handleCommentSubmit}>
       <div>
         <br></br>
         <label>
-          <i className="far fa-comment-alt"></i>
+          s<i className="far fa-comment-alt"></i>
           <> </>
           <b>{heading}</b> <> </>
         </label>
@@ -23,6 +38,7 @@ const CommentBox = ({ heading }) => {
           rows="4"
           placeholder="Write something ..."
           color="black"
+          onChange={handleCommentInput}
         />
       </div>
       <div>
@@ -46,8 +62,12 @@ const CommentBox = ({ heading }) => {
           <b>Post</b>
         </Button>
       </div>
-    </>
+      <>
+        {addNewComment.map(post => {
+          return <li>{post}</li>;
+        })}
+      </>
+    </Form>
   );
 };
-
 export default CommentBox;

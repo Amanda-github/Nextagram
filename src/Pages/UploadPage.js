@@ -7,8 +7,7 @@ import {
   FormGroup,
   Input,
   FormText,
-  Button,
-  CardFooter
+  Button
 } from "reactstrap";
 import axios from "axios";
 
