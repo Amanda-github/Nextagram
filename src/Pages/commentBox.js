@@ -2,20 +2,24 @@ import React, { useState } from "react";
 import { Button, Form } from "reactstrap";
 
 const CommentBox = ({ heading }) => {
-  //post comment
+  //post comment using 2 state to avoid confusion
   const [postComment, setPostComment] = useState([]);
-  const addNewComment = [...postComment];
+  const [input, setInput] = useState("");
 
   const handleCommentSubmit = e => {
     e.preventDefault();
     console.log(postComment);
-    addNewComment.push([]);
-    setPostComment("");
+    const addNewComment = [];
+    addNewComment.push(input);
+    setPostComment(addNewComment);
+    setInput([]);
   };
+  // console.log(postComment);
 
   const handleCommentInput = comment => {
-    setPostComment(comment.target.value);
+    setInput(comment.target.value);
   };
+  // console.log(input);
 
   return (
     <Form onSubmit={handleCommentSubmit}>
@@ -40,6 +44,9 @@ const CommentBox = ({ heading }) => {
           color="black"
           onChange={handleCommentInput}
         />
+        {postComment.map(post => {
+          return <p>{post}</p>;
+        })}
       </div>
       <div>
         <Button
@@ -62,11 +69,6 @@ const CommentBox = ({ heading }) => {
           <b>Post</b>
         </Button>
       </div>
-      <>
-        {addNewComment.map(post => {
-          return <li>{post}</li>;
-        })}
-      </>
     </Form>
   );
 };
