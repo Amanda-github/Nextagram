@@ -22,9 +22,9 @@ const CommentBox = ({ heading }) => {
       <div>
         <br></br>
         <label>
-          s<i className="far fa-comment-alt"></i>
+          <i className="far fa-comment-alt"></i>
           <> </>
-          <b>{heading}</b> <> </>
+          <b>{heading}</b>
         </label>
         <br></br>
         <textarea
